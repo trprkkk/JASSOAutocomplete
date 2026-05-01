@@ -1,0 +1,38 @@
+// ==UserScript==
+// @name         JASSO 奨学金番号 自動入力
+// @namespace    https://scholar-ps.sas.jasso.go.jp/
+// @version      1.1
+// @match        https://scholar-ps.sas.jasso.go.jp/mypage/login_submit.do
+// @run-at       document-end
+// ==/UserScript==
+
+(function () {
+    'use strict';
+
+    // ===== 入力したい値 =====
+    const bg1 = "123";      // 上段（3桁）
+    const bg2 = "00";       // ← select の value（例: "00", "01", "カ", "コウ" など）
+    const bg3 = "123456";   // 下段（6桁）
+    // ======================
+
+    function fill() {
+        const input1 = document.getElementById("syogkseibgKakunin_open_syogkseiBg1");
+        const select2 = document.getElementById("kakuninInput_openToEntry_syogkseiBg2");
+        const input3 = document.getElementById("syogkseibgKakunin_open_syogkseiBg3");
+
+        if (input1 && select2 && input3) {
+            input1.value = bg1;
+            select2.value = bg2;
+            input3.value = bg3;
+
+            // イベント発火
+            input1.dispatchEvent(new Event('input', { bubbles: true }));
+            select2.dispatchEvent(new Event('change', { bubbles: true }));
+            input3.dispatchEvent(new Event('input', { bubbles: true }));
+
+            clearInterval(timer);
+        }
+    }
+
+    const timer = setInterval(fill, 200);
+})();
