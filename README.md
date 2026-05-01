@@ -1,2 +1,2 @@
 # JASSOAutocomplete
-JASSOのスカラネット・パーソナルの奨学生番号確認を自動入力するやつ
+JASSOのスカラネット・パーソナルの奨学生番号確認を自動入力するスクリプト。Tampermonkeyとかで使える。
